@@ -3,6 +3,7 @@ package EmployeeDatabase;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Scanner;
 
@@ -60,9 +61,37 @@ public class Employee {
 			
 			case 3:{
 				// Searching Employee.
+				PreparedStatement ps =con.prepareStatement("select * from emp where id=?");
+				System.out.println("Enter the ID of Employee");
+				int id =sc.nextInt();
+				ps.setInt(1, id);
+				System.out.println("Searched Results :- ");
+				ResultSet rs = ps.executeQuery();
+				if(rs.next()) {
+					System.out.println("Employee ID Is      :- "+rs.getInt(1));
+					System.out.println("Employee Name Is    :- "+rs.getString(2));
+					System.out.println("Employee SurName Is :- "+rs.getString(3));
+					System.out.println("Employee Job Is     :- "+rs.getString(4));
+					System.out.println("Employee Salary Is  :- "+rs.getInt(5));
+					System.out.println("Employee Dept Is    :- "+rs.getInt(6));
+					System.out.println();
+					
+				}else {
+					System.err.println("Id is Not present into database");
+					
+				}
+				break;
 				
 				
 			}//-------End of Case 3.
+			
+			case 4:{
+				// All Employee.
+				
+				
+				
+				
+			}//-------End of Case 4.
 			
 			
 			
